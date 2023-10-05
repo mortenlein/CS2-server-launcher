@@ -13,3 +13,9 @@ so that clients can communicate with the server locally. For anything internet r
 
 This is a simple solution before Valve makes a proper solution, use it at your own risk.
 If you have anything you want to add, please make a PR or fork this progress, its no problem.
+
+![bilde](https://github.com/mortenlein/CS2-server-launcher/assets/3304457/2e506b8a-c22d-4550-8651-23ea11551642)
+
+![bilde](https://github.com/mortenlein/CS2-server-launcher/assets/3304457/ecb26521-f3fc-405d-8621-7f2a9759354d)
+
+![bilde](https://github.com/mortenlein/CS2-server-launcher/assets/3304457/19cec711-d684-4a11-9c73-1308c55f30fb)
