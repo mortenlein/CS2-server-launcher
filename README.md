@@ -1,5 +1,13 @@
 # Dedicated CS2-server-launcher
 
+Update: This got abit more attention than I anticipated, which is always nice!
+One caveat from this is that this application assumes that Steam is installed in the default directory,
+"C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\game\bin\win64\cs2.exe",
+so if you dont have it installed here, it will not find it for you, yet. Will look into making a check for this
+at the start of the application. Thank you.
+
+----------------
+
 This is an simple Console Application for launching a dedicated CS2 server on Windows.
 This is for the non-tech savvy who does not want to be doing this the hard way.
 
