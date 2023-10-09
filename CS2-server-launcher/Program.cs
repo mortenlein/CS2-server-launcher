@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 
-namespace StringManipulation
+namespace CS2DedicatedServer
 {
     class Program
     {
@@ -13,8 +14,11 @@ namespace StringManipulation
                 showMenu = MainMenu();
             }
         }
+
         public static bool MainMenu()
         {
+
+
             string selectedgameName;
             string selectedgame_type;
             string selectedgame_mode;
@@ -145,11 +149,30 @@ namespace StringManipulation
             }
         }
 
+
+        private static string GetCs2ExePath()
+        {
+            string configPath = "config.ini";
+            if (File.Exists(configPath))
+            {
+                return File.ReadAllText(configPath).Trim();
+            }
+            else
+            {
+                Console.WriteLine("Enter the full path to cs2.exe:");
+                string path = Console.ReadLine();
+                File.WriteAllText(configPath, path);
+                return path;
+            }
+        }
+
         private static void LaunchServer(string selectedGamemode, string selectedMap, string selectedgame_type, string selectedgame_mode, string launchit)
         {
             Console.Clear();
+
+            string cs2ExePath = GetCs2ExePath();
             Process.Start(@"netsh", "advfirewall firewall add rule name=\"CS2 Server port\" dir=in action=allow protocol=UDP localport=27015");
-            Process.Start(@"C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\game\bin\win64\cs2.exe", "-dedicated -usercon +game_type "+selectedgame_type+" +game_mode "+selectedgame_mode+" +map " +selectedMap);
+            Process.Start(cs2ExePath, "-dedicated -usercon +game_type "+selectedgame_type+" +game_mode "+selectedgame_mode+" +map " +selectedMap);
             Environment.Exit(0);
         }
     }
