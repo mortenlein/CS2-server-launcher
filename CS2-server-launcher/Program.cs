@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 
-namespace CS2DedicatedServer
+namespace StringManipulation
 {
     class Program
     {
@@ -89,7 +89,8 @@ namespace CS2DedicatedServer
             Console.WriteLine("5) Nuke");
             Console.WriteLine("6) Overpass");
             Console.WriteLine("7) Vertigo");
-            Console.WriteLine("8) Exit");
+            Console.WriteLine("8) Custom map");
+            Console.WriteLine("9) Exit");
             Console.Write("\r\nSelect an option: ");
 
             switch (Console.ReadLine())
@@ -120,6 +121,16 @@ namespace CS2DedicatedServer
                     return true;
                 case "7":
                     selectedMap = "de_Vertigo";
+                    PreviewLaunch(selectedgameName, selectedMap, selectedgame_type, selectedgame_mode);
+                    return true;
+                case "8":
+                    Console.WriteLine("Please type in custom map (Name without file extension, ie. de_anubis, de_vertigo etc.");
+                    selectedMap = Console.ReadLine();
+                    if (string.IsNullOrEmpty(selectedMap))
+                    {
+                        Console.WriteLine("no map selected, exiting app");
+                        Environment.Exit(0);
+                    }
                     PreviewLaunch(selectedgameName, selectedMap, selectedgame_type, selectedgame_mode);
                     return true;
                 default:
@@ -172,7 +183,7 @@ namespace CS2DedicatedServer
 
             string cs2ExePath = GetCs2ExePath();
             Process.Start(@"netsh", "advfirewall firewall add rule name=\"CS2 Server port\" dir=in action=allow protocol=UDP localport=27015");
-            Process.Start(cs2ExePath, "-dedicated -usercon +game_type "+selectedgame_type+" +game_mode "+selectedgame_mode+" +map " +selectedMap);
+            Process.Start(@"C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\game\bin\win64\cs2.exe", "-dedicated -usercon +game_type "+selectedgame_type+" +game_mode "+selectedgame_mode+" +map " +selectedMap);
             Environment.Exit(0);
         }
     }
